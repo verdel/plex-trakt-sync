@@ -12,10 +12,14 @@ jobs:
         with:
           token: ${{ secrets.REPO_SCOPED_TOKEN }}
 
-      - name: Fetch release version
+      - name: Fetch Taxel/PlexTraktSync latest tag
         run: |
           curl -sL https://api.github.com/repos/Taxel/PlexTraktSync/tags | \
-          jq -r ".[0].name" > plextraktsync.version
+          jq -r ".[0].name" > VERSION
+
+      - name: Get Taxel/PlexTraktSync latest tag from version file
+        run: echo "::set-output name=version::$(cat VERSION)"
+        id: tag
 
       - name: Check for modified files
         id: git-check
@@ -26,5 +30,5 @@ jobs:
         run: |
           git config --global user.name 'Vadim Aleksandrov'
           git config --global user.email 'valeksandrov@me.com'
-          git commit -am "New release version"
+          git commit -am "New release with tag ${{ steps.tag.outputs.version }} in Taxel/PlexTraktSync"
           git push
