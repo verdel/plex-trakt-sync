@@ -24,7 +24,7 @@ jobs:
       - name: Commit latest release version
         if: steps.git-check.outputs.modified == 'true'
         run: |
-          git config --global user.name 'Vadim Aleksandrov
+          git config --global user.name 'Vadim Aleksandrov'
           git config --global user.email 'valeksandrov@me.com'
           git commit -am "New release version"
           git push
