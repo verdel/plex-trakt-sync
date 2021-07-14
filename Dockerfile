@@ -1,13 +1,15 @@
 FROM python:3-alpine as build
 ARG TAG
 
-RUN apk add git
+RUN apk add git curl
 
 WORKDIR /app
 
 RUN git -c advice.detachedHead=false clone --quiet --depth 1 --branch $TAG https://github.com/Taxel/PlexTraktSync.git . \
     && echo "j2cli[yaml]" >> requirements.txt \
-    && pip3 install --no-cache-dir --target=dependencies -r requirements.txt
+    && pip3 install --no-cache-dir --target=dependencies -r requirements.txt \
+    && curl -L https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64 -o /app/dependencies/bin/jq \
+    && chmod +x /app/dependencies/bin/jq
 
 FROM python:3-alpine
 
