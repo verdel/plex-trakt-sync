@@ -18,14 +18,16 @@ function configFromTemplate {
   if [ -d "/app/conf_templates" ]; then rm -Rf /app/conf_templates; fi
 }
 
+cd /app
+
 if [ $# -eq 0 ]; then
   configFromTemplate
   echo "Start watch"
-  exec python /app/main.py watch
+  exec python3 -m plextraktsync watch
 elif [ $1 = "init" ]; then
   echo "PlexTraktSync initial configuration"
-  python /app/main.py plex-login
-  python /app/main.py trakt-login
+  python3 -m plextraktsync plex-login
+  python3 -m plextraktsync trakt-login
   echo
   echo "Plex environment variables"
   if [ -f /app/.env ];then
@@ -44,5 +46,5 @@ elif [ $1 = "init" ]; then
 else
   configFromTemplate
   echo "Start plex2trakt with args"
-  exec python /app/main.py "$*"
+  exec python3 -m plextraktsync "$*"
 fi

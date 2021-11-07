@@ -6,6 +6,8 @@ RUN apk add git curl
 WORKDIR /app
 
 RUN git -c advice.detachedHead=false clone --quiet --depth 1 --branch $TAG https://github.com/Taxel/PlexTraktSync.git . \
+    && find . -maxdepth 1 ! -name plextraktsync -type d -not -path '.' -exec rm -rf {} + \
+    && find . -maxdepth 1 ! -name requirements.txt -type f -not -path '.' -exec rm -rf {} + \
     && echo "j2cli[yaml]" >> requirements.txt \
     && pip3 install --no-cache-dir --target=dependencies -r requirements.txt \
     && curl -L https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64 -o /app/dependencies/bin/jq \
