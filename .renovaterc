@@ -1,0 +1,45 @@
+{
+  "extends": [
+    "config:base"
+  ],
+  "ignorePresets": [
+    ":prHourlyLimit2"
+  ],
+  "enabledManagers": [
+    "regex"
+  ],
+  "vulnerabilityAlerts": {
+    "enabled": false
+  },
+  "packageRules": [
+    {
+      "matchPackagePatterns": [
+        "*"
+      ],
+      "enabled": false
+    },
+    {
+      "matchPackageNames": [
+        "https://github.com/Taxel/PlexTraktSync"
+      ],
+      "groupName": "PlexTraktSync",
+      "enabled": true,
+      "automerge": true,
+      "automergeType": "branch"
+    }
+  ],
+  "regexManagers": [
+    {
+      "fileMatch": [
+        "Dockerfile",
+        ".github/workflows/build-docker.yaml"
+      ],
+      "matchStrings": [
+        "ARG TAG=(?<currentValue>.*)",
+        "TAG: (?<currentValue>.*)"
+      ],
+      "datasourceTemplate": "git-tags",
+      "depNameTemplate": "https://github.com/Taxel/PlexTraktSync"
+    }
+  ]
+}
