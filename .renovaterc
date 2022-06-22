@@ -1,6 +1,7 @@
 {
   "extends": [
-    "config:base"
+    "config:base",
+    ":disableDependencyDashboard"
   ],
   "ignorePresets": [
     ":prHourlyLimit2"
@@ -20,26 +21,27 @@
     },
     {
       "matchPackageNames": [
-        "https://github.com/Taxel/PlexTraktSync"
+        "Taxel/PlexTraktSync"
       ],
       "groupName": "PlexTraktSync",
       "enabled": true,
       "automerge": true,
-      "automergeType": "branch"
+      "platformAutomerge": true
     }
   ],
   "regexManagers": [
     {
       "fileMatch": [
         "Dockerfile",
-        ".github/workflows/build-docker.yaml"
+        ".github/workflows/build-publish-docker.yaml"
       ],
       "matchStrings": [
         "ARG TAG=(?<currentValue>.*)",
         "TAG: (?<currentValue>.*)"
       ],
       "datasourceTemplate": "git-tags",
-      "depNameTemplate": "https://github.com/Taxel/PlexTraktSync"
+      "depNameTemplate": "Taxel/PlexTraktSync",
+      "packageNameTemplate": "https://github.com/Taxel/PlexTraktSync"
     }
   ]
 }

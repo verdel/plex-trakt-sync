@@ -1,8 +1,9 @@
-name: Build docker image
+name: Test build docker image
 on:
   push:
-    paths:
-      - Dockerfile
+    branches-ignore:
+      - master
+
 jobs:
   build-docker:
     runs-on: ubuntu-latest
