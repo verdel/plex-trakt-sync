@@ -1,5 +1,5 @@
 FROM python:3-alpine as build
-ARG TAG=0.20.1
+ARG TAG=0.20.2
 
 RUN apk add git curl
 
