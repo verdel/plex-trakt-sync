@@ -4,11 +4,11 @@ set -e
 
 function configFromTemplate {
   if [ -f /app/conf_templates/.env.j2 ];then
-      j2 -o /app/.env /app/conf_templates/.env.j2
+      jinjanate -o /app/.env /app/conf_templates/.env.j2
   fi
 
   if [ -f /app/conf_templates/.pytrakt.json.j2 ];then
-      j2 -o /app/.pytrakt.json /app/conf_templates/.pytrakt.json.j2
+      jinjanate -o /app/.pytrakt.json /app/conf_templates/.pytrakt.json.j2
   fi
 
   if [ -f /app/conf_templates/config.json ];then
