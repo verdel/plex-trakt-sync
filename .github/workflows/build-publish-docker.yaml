@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 env:
-  TAG: 0.28.20
+  TAG: 0.28.21
 
 jobs:
   build-push-docker:
