@@ -1,23 +1,24 @@
 {
   "extends": [
-    "config:base",
+    "mergeConfidence:all-badges",
+    "config:recommended",
     ":disableDependencyDashboard"
   ],
   "ignorePresets": [
     ":prHourlyLimit2"
   ],
   "enabledManagers": [
-    "regex"
+    "custom.regex"
   ],
   "vulnerabilityAlerts": {
     "enabled": false
   },
   "packageRules": [
     {
-      "matchPackagePatterns": [
+      "enabled": false,
+      "matchPackageNames": [
         "*"
-      ],
-      "enabled": false
+      ]
     },
     {
       "matchPackageNames": [
@@ -29,17 +30,18 @@
       "platformAutomerge": true
     }
   ],
-  "regexManagers": [
+  "customManagers": [
     {
-      "fileMatch": [
-        "Dockerfile",
-        ".github/workflows/build-publish-docker.yaml"
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/Dockerfile/",
+        "/.github/workflows/build-publish-docker.yaml/"
       ],
       "matchStrings": [
         "ARG TAG=(?<currentValue>.*)",
         "TAG: (?<currentValue>.*)"
       ],
-      "datasourceTemplate": "git-tags",
+      "datasourceTemplate": "github-tags",
       "depNameTemplate": "Taxel/PlexTraktSync",
       "packageNameTemplate": "https://github.com/Taxel/PlexTraktSync"
     }
