@@ -43,7 +43,7 @@
       ],
       "datasourceTemplate": "github-tags",
       "depNameTemplate": "Taxel/PlexTraktSync",
-      "packageNameTemplate": "https://github.com/Taxel/PlexTraktSync"
+      "packageNameTemplate": "Taxel/PlexTraktSync"
     }
   ]
 }
